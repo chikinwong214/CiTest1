@@ -1,7 +1,7 @@
 <?php
 class User1 extends CI_Controller{
     public function ShowUsers(){
-        //装载数据库操作类1
+        //装载数据库操作类
         $this->load->database();
         //装载成功后，会放入超级对象的属性中，默认的属性名是db
 //        var_dump($this->db);
