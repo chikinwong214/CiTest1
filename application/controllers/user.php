@@ -24,7 +24,7 @@ class User extends My_Controller {
         $this->load->view('header');
         $this->load->view('user/add');
 
-        }
+    }
     public function insert() {
         var_dump('<pre>',$this->input->post('name'));
     }
