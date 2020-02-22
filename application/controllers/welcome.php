@@ -63,15 +63,15 @@ class Welcome extends My_Controller {
 
     public function testUpdate(){
 	    $data = array(
-	        'email'=>'mary@gmail.com',
-            'password' =>md5('12345'),
+	        'email'=>'mary1@gmail.com',
+            'password' =>md5('mary1'),
         );
-	    $bool = $this->db->update('user',$data, array('id'=>3));
+	    $bool = $this->db->update('user',$data, array('name'=>'mary'));
 	    var_dump($bool);
     }
 
     public function testDelete(){
-	    $bool = $this->db->delete('user', array('id'=>2));
+	    $bool = $this->db->delete('user', array('name'=>'missing'));
 	    var_dump($bool);
     }
 
