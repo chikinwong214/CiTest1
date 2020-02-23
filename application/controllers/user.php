@@ -28,4 +28,31 @@ class User extends My_Controller {
     public function insert() {
         var_dump('<pre>',$this->input->post('name'));
     }
+
+    public function testPage(){
+        $this->load->library('pagination');
+
+        $this->load->helper('url');
+
+        //每页显示10个
+        $page_size=10;
+
+        $config['base_url'] = site_url('user/testpage');
+        $config['total_rows'] = 100;
+        $config['per_page'] = $page_size;
+        $config['first_link'] = '首页';
+        $config['next_link'] = '下一页';
+        $config['pre_link'] = '上一页';
+        $config['last_link'] = '末页';
+        $config['uri_segment'] = 3;
+
+        $this->pagination->initialize($config);
+
+        $offset=intval($this->uri->segment(3));
+        $sql="select * from blog_user limit $offset, $page_size</p>";
+        echo $sql;
+        $data['links'] = $this->pagination->create_links();
+
+        $this->load->view('user/testpage',$data);
+    }
 }
