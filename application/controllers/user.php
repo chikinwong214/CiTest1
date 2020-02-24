@@ -76,4 +76,26 @@ class User extends My_Controller {
         $data=$this->upload->data(); //获取上传之后的数据
         echo $data['file_name'];
     }
+
+
+    public function login(){
+        $this->load->library('session');
+        $user=array('id'=>3,'name'=>'jack');
+        $this->session->set_userdata('user',$user);
+        //不要在这里获取刚放入的数据
+        //只有页面重新加载后跳转到别的url中，才能获取到
+
+        //一次性的数据，可以用于登陆设置，返回后不能再取用
+        $this->session->set_flashdata('test','only can see one time');
+    }
+
+    public function show_session(){
+        $this->load->library('session');
+        $user=$this->session->userdata('user');
+        var_dump('<pre>',$user);
+
+        $test=$this->session->flashdata('test');
+        var_dump($test);
+
+    }
 }
