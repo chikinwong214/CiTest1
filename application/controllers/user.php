@@ -22,11 +22,26 @@ class User extends My_Controller {
     public function add(){
 //        $this->load->helper('url'); //这个直接在auotlaod中自动加载
         $this->load->view('header');
+        $this->load->library('form_validation');
         $this->load->view('user/add');
 
     }
     public function insert() {
-        var_dump('<pre>',$this->input->post('name'));
+//        var_dump('<pre>',$this->input->post('name'));
+        //以下是验证表单
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', '用户名', 'required');
+        $this->form_validation->set_rules('email', '邮箱', 'valid_email');
+        $bool = $this->form_validation->run();
+        var_dump($bool);
+        if ($bool){
+            //调用model保存到数据库
+        }
+        else{
+            //显示错误信息
+            $this->load->view('user/add');
+        }
+
     }
 
     public function testPage(){
@@ -96,6 +111,27 @@ class User extends My_Controller {
 
         $test=$this->session->flashdata('test');
         var_dump($test);
-
     }
+
+    public function testCAPTCHA(){
+        $this->load->helper('url');
+        $this->load->helper('CAPTCHA');
+        $vals = array(
+            'word_length'=>6,
+//            'word'=>rand(1000,9999),
+            'img_path'  => './captcha/',
+            'img_url'   => base_url().'/captcha/',
+            'expiration'=> 60*10
+        );
+        $cap = create_captcha($vals);
+        echo $cap['image'].'<br>';
+        echo $cap['word'].'<br>';
+        $this->load->view('user/testCAPTCHA', array('cap' => $cap['image']));
+
+        session_start();
+        $_SESSION['cap']=$cap['word'];
+        var_dump($_SESSION['cap']);
+    }
+
+
 }
