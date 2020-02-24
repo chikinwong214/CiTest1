@@ -55,4 +55,25 @@ class User extends My_Controller {
 
         $this->load->view('user/testpage',$data); //test branch Company1
     }
+
+    public function file(){
+        $this->load->helper('url');
+        $this->load->view('user/file');
+
+    }
+
+    public function upload(){
+        $config['upload_path']='./uploads/'; //目录需要手动创建
+        $config['allowed_types']='gif|png|jpg|doc|docx';
+        $config['max_size']='10000';
+        $config['file_name']=uniqid(); //文件名称改用唯一名字
+
+        $this->load->library('upload',$config);
+        $this->upload->do_upload('pic'); //这个pic是表单名字
+
+        var_dump('<pre>',$this->upload->data());
+
+        $data=$this->upload->data(); //获取上传之后的数据
+        echo $data['file_name'];
+    }
 }

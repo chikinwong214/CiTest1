@@ -5,5 +5,5 @@
     Email <input type="text" name="email"/><br>
     <input type="submit" value="submit" /><br>
 </form>
-<img src="<?php echo base_url();?>upload/jh.jpg" alt="" width="200">
+<img src="<?php echo base_url();?>uploads/jh.jpg" alt="" width="200">
 </body>
