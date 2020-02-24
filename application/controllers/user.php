@@ -53,6 +53,6 @@ class User extends My_Controller {
         echo $sql;
         $data['links'] = $this->pagination->create_links();
 
-        $this->load->view('user/testpage',$data);
+        $this->load->view('user/testpage',$data); //test
     }
 }
