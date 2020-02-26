@@ -19,14 +19,7 @@ class User extends My_Controller {
         $this->load->view('user/index',$data);
     }
 
-    public function add(){
-//        $this->load->helper('url'); //这个直接在auotlaod中自动加载
-        $this->load->view('header');
-        $this->load->library('form_validation');
-        $this->load->view('user/add');
-
-    }
-    public function insert() {
+     public function insert() {
 //        var_dump('<pre>',$this->input->post('name'));
         //以下是验证表单
         $this->load->library('form_validation');
@@ -39,6 +32,7 @@ class User extends My_Controller {
         }
         else{
             //显示错误信息
+            $this->load->view('header');
             $this->load->view('user/add');
         }
 

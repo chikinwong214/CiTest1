@@ -1,4 +1,5 @@
 <body>
+<?php echo validation_errors();?> //统一输出所有错误
 <form action="<?php echo site_url('user/insert');?>" method="post">
     Name <input type="text" name="name" value="<?php echo set_value('name')?>" />
     <?php echo form_error('name','<span>','</span>'); ?>
